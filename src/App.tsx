@@ -1,8 +1,14 @@
 import React from 'react';
 import './App.scss';
 
+import Container from './components/common/Container';
+
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Container></Container>
+    </div>
+  );
 }
 
 export default App;

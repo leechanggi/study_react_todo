@@ -1,0 +1,9 @@
+@charset 'UTF-8';
+@use './style/common/variable' as *;
+@use './style/common/reset' as *;
+@use './style/common/container' as *;
+@use './style/util/box' as *;
+
+.App {
+  background-color: var(--background-color);
+}

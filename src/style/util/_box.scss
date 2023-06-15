@@ -1,0 +1,21 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 425px;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  background-color: var(--box-color-100);
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem;
+    &_button {
+    }
+  }
+  &_content {
+  }
+  &_footer {
+  }
+}
