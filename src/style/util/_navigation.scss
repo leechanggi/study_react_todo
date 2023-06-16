@@ -1,0 +1,12 @@
+.navigation {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  > .button,
+  > .link {
+    margin-right: 0.8rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

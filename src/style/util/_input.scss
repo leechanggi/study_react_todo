@@ -1,0 +1,15 @@
+.input {
+  width: 100%;
+  padding: 0 0.5rem;
+  &.size {
+    &-lg {
+      height: 4rem;
+    }
+    &-md {
+      height: 2.5rem;
+    }
+    &-sm {
+      height: 1rem;
+    }
+  }
+}

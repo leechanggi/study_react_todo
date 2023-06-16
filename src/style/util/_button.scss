@@ -1,0 +1,55 @@
+.button {
+  &.style-type {
+    &-primary {
+      padding: 0 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      border-radius: 0.25rem;
+      background-color: var(--main-color);
+
+      &.size {
+        &-lg {
+          height: 4rem;
+        }
+        &-md {
+          height: 2.5rem;
+        }
+        &-sm {
+          height: 1rem;
+        }
+      }
+    }
+    &-navigation {
+      color: var(--main-color);
+      font-weight: 700;
+    }
+    &-icon {
+      &.size {
+        &-lg {
+          height: 2.25rem;
+        }
+        &-md {
+          height: 1.5rem;
+        }
+        &-sm {
+          height: 1.3125rem;
+        }
+      }
+    }
+  }
+  &.size {
+    &-lg {
+      font-size: 1.5rem;
+    }
+    &-md {
+      font-size: 1rem;
+    }
+    &-sm {
+      font-size: 0.875rem;
+    }
+  }
+  &.isActive {
+    font-weight: 700;
+    color: var(--main-color);
+  }
+}
