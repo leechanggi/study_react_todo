@@ -6,25 +6,8 @@ import { Button } from './Button';
 import { ListWithSelector } from './ListWithSelector';
 import { InputTextWithButton } from './InputTextWithButton';
 
-// const listData = [
-//   { name: 'React.Js', state: 'completed' },
-//   { name: 'Typescript', state: 'active' },
-// ];
-
 export const Box = () => {
   const { theme, toggleThemeHandler } = useContext(ThemeContext);
-
-  const toStringtheme = (theme: boolean) => {
-    if (theme === true) {
-      return 'dark';
-    } else {
-      return 'light';
-    }
-  };
-
-  useEffect(() => {
-    document.body.setAttribute('data-theme', toStringtheme(theme));
-  }, [theme]);
 
   return (
     <div className="box">

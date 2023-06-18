@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useUniqueId() {
+export const useUniqueId = () => {
   const [uniqueHex, setUniqueHex] = useState<string>();
 
   useEffect(() => {
@@ -9,4 +9,4 @@ export default function useUniqueId() {
   }, []);
 
   return uniqueHex;
-}
+};

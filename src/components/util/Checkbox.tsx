@@ -1,6 +1,6 @@
 import React, { useState, PropsWithChildren } from 'react';
 import classNames from 'classnames';
-import useUniqueId from '../../hook/useUniqueId';
+import { useUniqueId } from '../../hook/useUniqueId';
 
 interface ICheckbox {
   type: 'checkbox' | 'radio';

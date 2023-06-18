@@ -1,15 +1,13 @@
 import React from 'react';
-import ThemeContextProvider from './context/ThemeContextProvider';
-
-import './App.scss';
-
 import Container from './components/common/Container';
+import ThemeContextProvider from './context/ThemeContextProvider';
+import './App.scss';
 
 function App() {
   return (
     <ThemeContextProvider>
       <div className="App">
-        <Container></Container>
+        <Container />
       </div>
     </ThemeContextProvider>
   );

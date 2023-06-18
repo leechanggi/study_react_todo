@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import useUniqueId from '../../hook/useUniqueId';
+import { useUniqueId } from '../../hook/useUniqueId';
 
 interface IInput {
   inputType: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text';

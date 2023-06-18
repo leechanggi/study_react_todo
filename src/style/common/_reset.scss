@@ -100,14 +100,6 @@ mark {
 i {
   font-style: normal;
 }
-.sr-only {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  opacity: 0;
-  border: 0;
+* {
+  outline: none;
 }

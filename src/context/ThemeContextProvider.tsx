@@ -1,4 +1,4 @@
-import React, { createContext, useState, PropsWithChildren } from 'react';
+import React, { createContext, useState, useEffect, PropsWithChildren } from 'react';
 
 export interface ITheme {
   theme: boolean;
@@ -11,7 +11,28 @@ export const ThemeContext = createContext<ITheme>({
 
 const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState(false);
-  const toggleThemeHandler = () => setTheme(theme => !theme);
+  const toggleThemeHandler = () => {
+    setTheme(theme => !theme);
+  };
+
+  // const toStringTheme = (theme: boolean) => {
+  //   if (theme === true) {
+  //     return 'dark';
+  //   } else {
+  //     return 'light';
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   const getLocalTheme = localStorage.getItem('theme');
+  //   if (typeof getLocalTheme === 'string') {
+  //     document.body.setAttribute('data-theme', getLocalTheme);
+  //   } else {
+  //     localStorage.setItem('theme', toStringTheme(theme));
+  //     document.body.setAttribute('data-theme', toStringTheme(theme));
+  //   }
+  //   return () => {};
+  // }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleThemeHandler }}>{children}</ThemeContext.Provider>
