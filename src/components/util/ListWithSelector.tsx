@@ -6,33 +6,33 @@ import { Button } from './Button';
 
 export interface IListWithSelector {
   delList: boolean;
-  handleDelList?: (id: string) => void;
-  handlePostState?: (id: string, state: boolean) => void;
-  listData: TData[];
+  handelRemoveList?: (id: string) => void;
+  handleChecked?: (id: string, state: boolean) => void;
+  list: TData[];
 }
 
 export const ListWithSelector = ({
   delList,
-  handleDelList,
-  handlePostState,
-  listData,
+  handelRemoveList,
+  handleChecked,
+  list,
 }: PropsWithChildren<IListWithSelector>) => {
   return (
     <ul className="list">
-      {listData.map(item => (
+      {list.map(item => (
         <li className="list_item selector" key={item.id}>
           <Checkbox
             type="checkbox"
             checked={item.state}
             children={item.title}
             uniqueId={item.id}
-            handlePostState={handlePostState}
+            handleChecked={handleChecked}
           />
           {delList === true && (
             <Button
               type="button"
               onClick={() => {
-                typeof handleDelList !== 'undefined' && handleDelList(item.id);
+                typeof handelRemoveList !== 'undefined' && handelRemoveList(item.id);
               }}
               styleType="icon"
               size="sm"

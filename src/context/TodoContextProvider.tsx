@@ -4,61 +4,62 @@ import { useImmer } from 'use-immer';
 export type TData = {
   id: string;
   title: string;
-  state: boolean; // false: 진행중, true: 완료
+  state: boolean;
 };
 
-export interface IListData {
-  listData: TData[];
-  createListData: ({ id, title, state }: TData) => void;
-  removeListData: (id: string) => void;
-  postListDataState: (id: string, state: boolean) => void;
+export interface Ilist {
+  list: TData[];
+  createList: ({ id, title, state }: TData) => void;
+  removeList: (id: string) => void;
+  updateState: (id: string, state: boolean) => void;
 }
 
-export const TodoContext = createContext<IListData>({
-  listData: [],
-  createListData: () => null,
-  removeListData: () => null,
-  postListDataState: () => null,
+export const TodoContext = createContext<Ilist>({
+  list: [],
+  createList: () => null,
+  removeList: () => null,
+  updateState: () => null,
 });
 
 const TodoContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [listData, updateListData] = useImmer<TData[]>([]);
-  const getListData = localStorage.getItem('LIST_DATA');
+  const [list, updatelist] = useImmer<TData[]>([]);
+  const getlist = localStorage.getItem('DATA_LIST');
 
-  const createListData = ({ id, title, state }: TData) => {
-    updateListData(list => {
+  const createList = ({ id, title, state }: TData) => {
+    updatelist(list => {
       return [...list, { id, title, state }];
     });
   };
 
-  const removeListData = (id: string) => {
-    updateListData(list => {
+  const removeList = (id: string) => {
+    updatelist(list => {
       const findIndexListId = list.findIndex((d: TData) => d.id === id);
       list.splice(findIndexListId, 1);
     });
   };
 
-  const postListDataState = (id: string, state: boolean) => {
-    updateListData(list => {
+  const updateState = (id: string, state: boolean) => {
+    updatelist(list => {
       const findIndexListId = list.findIndex((d: TData) => d.id === id);
       list[findIndexListId].state = state;
     });
   };
 
   useEffect(() => {
-    if (typeof getListData !== 'string') {
-      localStorage.setItem('LIST_DATA', JSON.stringify([]));
+    if (typeof getlist !== 'string') {
+      localStorage.setItem('DATA_LIST', JSON.stringify([]));
     } else {
-      updateListData(JSON.parse(getListData));
+      updatelist(JSON.parse(getlist));
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children]);
 
   useEffect(() => {
-    localStorage.setItem('LIST_DATA', JSON.stringify(listData));
-  }, [listData]);
+    localStorage.setItem('DATA_LIST', JSON.stringify(list));
+  }, [list]);
 
   return (
-    <TodoContext.Provider value={{ listData, createListData, removeListData, postListDataState }}>
+    <TodoContext.Provider value={{ list, createList, removeList, updateState }}>
       {children}
     </TodoContext.Provider>
   );

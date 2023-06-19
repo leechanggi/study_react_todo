@@ -6,11 +6,10 @@ interface IInput {
   inputType: 'email' | 'number' | 'password' | 'search' | 'tel' | 'text';
   size: 'lg' | 'md' | 'sm';
   name: string;
-  defaultValue?: string | number | readonly string[];
   placeholder?: string;
   readOnly?: boolean;
   disabled?: boolean;
-  form?: any;
+  value?: string | number | readonly string[];
   updateForm?: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -21,8 +20,7 @@ export const Input = ({
   placeholder,
   readOnly,
   disabled,
-  defaultValue,
-  form,
+  value,
   updateForm,
 }: IInput) => {
   const uniqueId = useUniqueId();
@@ -41,11 +39,11 @@ export const Input = ({
         placeholder={typeof placeholder === 'string' ? placeholder : ''}
         disabled={disabled === true ? disabled : false}
         readOnly={readOnly === true ? readOnly : false}
-        defaultValue={typeof defaultValue === 'string' ? defaultValue : ''}
+        value={value}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          if (typeof form !== 'undefined' && typeof updateForm !== 'undefined') {
+          if (typeof value !== 'undefined' && typeof updateForm !== 'undefined') {
             const { name, value } = e.currentTarget;
-            updateForm({ ...form, [name]: value });
+            updateForm({ [name]: value });
           }
         }}
       />

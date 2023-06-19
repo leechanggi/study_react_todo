@@ -18,20 +18,21 @@ export const InputTextWithButton = ({ handelCreateList }: IInputTextWithButton) 
     const uniqueId = Number(Math.random() * (16 ** 9 - 16 * 8) + 16 * 8)
       .toString(16)
       .substring(0, 8);
+    setForm({ title: '' });
     handelCreateList({ id: uniqueId, title: form.title, state: false });
   };
 
   return (
-    <form className="form style-line">
+    <form className="form style-line" onSubmit={handleSubmit}>
       <Input
         inputType="text"
         size="md"
         placeholder="해야 할 일을 추가해 보세요!"
         name="title"
-        form={form}
+        value={form.title}
         updateForm={setForm}
       />
-      <Button type="submit" styleType="primary" size="md" children="ADD" onClick={handleSubmit} />
+      <Button type="submit" styleType="primary" size="md" children="ADD" />
     </form>
   );
 };

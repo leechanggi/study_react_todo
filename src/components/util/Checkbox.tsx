@@ -5,14 +5,14 @@ interface ICheckbox {
   type: 'checkbox' | 'radio';
   checked: boolean;
   uniqueId: string;
-  handlePostState?: (id: string, state: boolean) => void;
+  handleChecked?: (id: string, state: boolean) => void;
 }
 
 export default function Checkbox({
   type,
   checked,
   uniqueId,
-  handlePostState,
+  handleChecked,
   children,
 }: PropsWithChildren<ICheckbox>) {
   const [check, setCheck] = useState(checked);
@@ -29,8 +29,8 @@ export default function Checkbox({
         className={classNames({ [`${type}-input`]: true })}
         checked={check}
         onChange={e => {
-          if (typeof handlePostState !== 'undefined') {
-            handlePostState(uniqueId, e.target.checked);
+          if (typeof handleChecked !== 'undefined') {
+            handleChecked(uniqueId, e.target.checked);
             setCheck(e.target.checked);
           }
         }}

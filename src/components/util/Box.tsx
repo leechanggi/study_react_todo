@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContextProvider';
 import { TodoContext } from '../../context/TodoContextProvider';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
@@ -8,13 +8,13 @@ import { ListWithSelector } from './ListWithSelector';
 import { InputTextWithButton } from './InputTextWithButton';
 
 export const Box = () => {
-  const { theme, toggleThemeHandler } = useContext(ThemeContext);
-  const { listData, createListData, removeListData, postListDataState } = useContext(TodoContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { list, createList, removeList, updateState } = useContext(TodoContext);
 
   return (
     <div className="box">
       <div className="box_header">
-        <Button type="button" styleType="icon" size="md" onClick={toggleThemeHandler}>
+        <Button type="button" styleType="icon" size="md" onClick={toggleTheme}>
           {theme === true ? (
             <MdLightMode size={24} color="var(--main-color)" title="라이트 테마로 변경하기" />
           ) : (
@@ -26,13 +26,13 @@ export const Box = () => {
       <div className="box_content">
         <ListWithSelector
           delList={true}
-          handleDelList={removeListData}
-          handlePostState={postListDataState}
-          listData={listData}
+          handelRemoveList={removeList}
+          handleChecked={updateState}
+          list={list}
         />
       </div>
       <div className="box_footer">
-        <InputTextWithButton handelCreateList={createListData} />
+        <InputTextWithButton handelCreateList={createList} />
       </div>
     </div>
   );
