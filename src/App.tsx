@@ -6,9 +6,9 @@ import './App.scss';
 function App() {
   return (
     <ThemeContextProvider>
-      <div className="App">
-        <Container />
-      </div>
+        <div className="App">
+          <Container />
+        </div>
     </ThemeContextProvider>
   );
 }

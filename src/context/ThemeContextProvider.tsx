@@ -11,28 +11,26 @@ export const ThemeContext = createContext<ITheme>({
 
 const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState(false);
+  const getLocalTheme = localStorage.getItem('THEME_DATA');
+  const toStringTheme = (theme: boolean) => (theme === true ? 'dark' : 'light');
+  const toBooleanTheme = (theme: string) => (theme === 'light' ? false : true);
   const toggleThemeHandler = () => {
-    setTheme(theme => !theme);
+    setTheme(prev => {
+      localStorage.setItem('THEME_DATA', toStringTheme(!prev));
+      document.body.setAttribute('data-theme', toStringTheme(!prev));
+      return !prev;
+    });
   };
-
-  // const toStringTheme = (theme: boolean) => {
-  //   if (theme === true) {
-  //     return 'dark';
-  //   } else {
-  //     return 'light';
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const getLocalTheme = localStorage.getItem('theme');
-  //   if (typeof getLocalTheme === 'string') {
-  //     document.body.setAttribute('data-theme', getLocalTheme);
-  //   } else {
-  //     localStorage.setItem('theme', toStringTheme(theme));
-  //     document.body.setAttribute('data-theme', toStringTheme(theme));
-  //   }
-  //   return () => {};
-  // }, []);
+  useEffect(() => {
+    if (typeof getLocalTheme !== 'string') {
+      setTheme(false);
+      localStorage.setItem('THEME_DATA', toStringTheme(false));
+      document.body.setAttribute('data-theme', toStringTheme(false));
+    } else {
+      setTheme(toBooleanTheme(getLocalTheme));
+      document.body.setAttribute('data-theme', getLocalTheme);
+    }
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleThemeHandler }}>{children}</ThemeContext.Provider>
