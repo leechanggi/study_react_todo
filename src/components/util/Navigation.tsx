@@ -1,18 +1,35 @@
-import React, { PropsWithChildren } from 'react';
+import React, { useState, PropsWithChildren } from 'react';
 import { Button } from './Button';
 
 interface INavigation {
   navData: string[];
-  toggle?: boolean;
   size: 'lg' | 'md' | 'sm';
+  isActiveState: number;
+  setIsActiveState: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const Navigation = ({ toggle, navData, size, children }: PropsWithChildren<INavigation>) => {
+export const Navigation = ({
+  navData,
+  size,
+  isActiveState,
+  setIsActiveState,
+  children,
+}: PropsWithChildren<INavigation>) => {
   return (
-    <div className="navigation" data-toggle={toggle === true ? true : false}>
+    <div className="navigation">
       {navData.map((title, index) => {
         return (
-          <Button type="button" styleType="navigation" key={index} children={title} size={size} />
+          <Button
+            type="button"
+            styleType="navigation"
+            key={index}
+            children={title}
+            size={size}
+            isActive={isActiveState === index ? true : false}
+            onClick={() => {
+              setIsActiveState(index);
+            }}
+          />
         );
       })}
       {children}

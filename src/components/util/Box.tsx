@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContextProvider';
 import { TodoContext } from '../../context/TodoContextProvider';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
@@ -8,6 +8,7 @@ import { ListWithSelector } from './ListWithSelector';
 import { InputTextWithButton } from './InputTextWithButton';
 
 export const Box = () => {
+  const [isActiveState, setIsActiveState] = useState<number>(0);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { list, createList, removeList, updateState } = useContext(TodoContext);
 
@@ -21,14 +22,20 @@ export const Box = () => {
             <MdDarkMode size={24} color="var(--main-color)" title="다크 테마로 변경하기" />
           )}
         </Button>
-        <Navigation toggle={true} navData={['전체', '진행중', '완료']} size="md" />
+        <Navigation
+          navData={['전체', '진행중', '완료']}
+          size="md"
+          isActiveState={isActiveState}
+          setIsActiveState={setIsActiveState}
+        />
       </div>
       <div className="box_content">
         <ListWithSelector
-          delList={true}
-          handelRemoveList={removeList}
-          handleChecked={updateState}
           list={list}
+          deleteList={true}
+          isActiveState={isActiveState}
+          handleDelete={removeList}
+          handleChecked={updateState}
         />
       </div>
       <div className="box_footer">
