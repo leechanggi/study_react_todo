@@ -4,6 +4,7 @@ export interface ITheme {
   theme: boolean;
   toggleTheme: () => void;
 }
+
 export const ThemeContext = createContext<ITheme>({
   theme: false,
   toggleTheme: () => null,
@@ -12,8 +13,11 @@ export const ThemeContext = createContext<ITheme>({
 const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState(false);
   const getLocalTheme = localStorage.getItem('DATA_THEME');
+
   const toStringTheme = (theme: boolean) => (theme === true ? 'dark' : 'light');
+
   const toBooleanTheme = (theme: string) => (theme === 'light' ? false : true);
+
   const toggleTheme = () => {
     setTheme(prev => {
       localStorage.setItem('DATA_THEME', toStringTheme(!prev));
@@ -21,6 +25,7 @@ const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
       return !prev;
     });
   };
+
   useEffect(() => {
     if (typeof getLocalTheme !== 'string') {
       setTheme(false);

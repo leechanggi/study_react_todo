@@ -15,7 +15,7 @@ export interface IListWithSelector {
 export const ListWithSelector = ({
   list,
   deleteList,
-  isActiveState, // 0 전체, 1 진행중, 2 완료
+  isActiveState,
   handleDelete,
   handleChecked,
 }: PropsWithChildren<IListWithSelector>) => {

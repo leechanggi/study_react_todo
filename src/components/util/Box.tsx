@@ -23,7 +23,7 @@ export const Box = () => {
           )}
         </Button>
         <Navigation
-          navData={['전체', '진행중', '완료']}
+          navData={['All', 'Active', 'Complete']}
           size="md"
           isActiveState={isActiveState}
           setIsActiveState={setIsActiveState}
