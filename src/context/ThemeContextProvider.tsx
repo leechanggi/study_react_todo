@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, PropsWithChildren } from 'react';
+import React, { createContext, useState, useEffect, PropsWithChildren } from "react";
 
 export interface ITheme {
   theme: boolean;
@@ -12,28 +12,28 @@ export const ThemeContext = createContext<ITheme>({
 
 const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState(false);
-  const getLocalTheme = localStorage.getItem('DATA_THEME');
+  const getLocalTheme = localStorage.getItem("DATA_THEME");
 
-  const toStringTheme = (theme: boolean) => (theme === true ? 'dark' : 'light');
+  const toStringTheme = (theme: boolean) => (theme === true ? "dark" : "light");
 
-  const toBooleanTheme = (theme: string) => (theme === 'light' ? false : true);
+  const toBooleanTheme = (theme: string) => (theme === "light" ? false : true);
 
   const toggleTheme = () => {
     setTheme(prev => {
-      localStorage.setItem('DATA_THEME', toStringTheme(!prev));
-      document.body.setAttribute('data-theme', toStringTheme(!prev));
+      localStorage.setItem("DATA_THEME", toStringTheme(!prev));
+      document.body.setAttribute("data-theme", toStringTheme(!prev));
       return !prev;
     });
   };
 
   useEffect(() => {
-    if (typeof getLocalTheme !== 'string') {
+    if (typeof getLocalTheme !== "string") {
       setTheme(false);
-      localStorage.setItem('DATA_THEME', toStringTheme(false));
-      document.body.setAttribute('data-theme', toStringTheme(false));
+      localStorage.setItem("DATA_THEME", toStringTheme(false));
+      document.body.setAttribute("data-theme", toStringTheme(false));
     } else {
       setTheme(toBooleanTheme(getLocalTheme));
-      document.body.setAttribute('data-theme', getLocalTheme);
+      document.body.setAttribute("data-theme", getLocalTheme);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
