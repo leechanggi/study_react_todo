@@ -13,11 +13,8 @@ export const ThemeContext = createContext<ITheme>({
 const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState(false);
   const getLocalTheme = localStorage.getItem("DATA_THEME");
-
   const toStringTheme = (theme: boolean) => (theme === true ? "dark" : "light");
-
   const toBooleanTheme = (theme: string) => (theme === "light" ? false : true);
-
   const toggleTheme = () => {
     setTheme(prev => {
       localStorage.setItem("DATA_THEME", toStringTheme(!prev));
@@ -35,8 +32,7 @@ const ThemeContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
       setTheme(toBooleanTheme(getLocalTheme));
       document.body.setAttribute("data-theme", getLocalTheme);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [children]);
+  }, []);
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };
