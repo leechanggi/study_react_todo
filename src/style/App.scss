@@ -1,26 +1,23 @@
 @charset 'UTF-8';
 
-@use './common/variable' as *;
+@use "./common/variable" as *;
 
-@use './common/font' as *;
-@use './common/reset' as *;
+@use "./common/font" as *;
+@use "./common/reset" as *;
+@use "./common/container" as *;
 
-@use './util/box' as *;
-@use './util/button' as *;
-@use './util/checkbox' as *;
-@use './util/form' as *;
-@use './util/input' as *;
-@use './util/list' as *;
-@use './util/navigation' as *;
+@use "./util/box" as *;
+@use "./util/button" as *;
+@use "./util/checkbox" as *;
+@use "./util/form" as *;
+@use "./util/input" as *;
+@use "./util/list" as *;
+@use "./util/navigation" as *;
 
-body {
-  font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Malgun Gothic',
-    '맑은 고딕', helvetica, 'Apple SD Gothic Neo', sans-serif;
+.App {
+  font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕",
+    helvetica, "Apple SD Gothic Neo", sans-serif;
   background-color: var(--background-color);
-}
-#root {
-  position: relative;
-  min-height: 100vh;
 }
 *::-webkit-scrollbar {
   width: 0.4rem;
